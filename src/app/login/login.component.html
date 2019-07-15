@@ -1,0 +1,16 @@
+<h3 class="text-center">Login</h3>
+<form method="post" (ngSubmit)="login()" class="dialog-login">
+    <dx-form [(formData)]="account">
+        <dxi-item dataField="userName">
+            <dxi-validation-rule type="required" message="* Username is required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="passWord" [editorOptions]="{mode: 'password'}">
+            <dxi-validation-rule type="required" message="* Password is required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item
+            itemType="button"
+            horizontalAlignment="right"
+            [buttonOptions]="onSubmit">
+        </dxi-item>
+    </dx-form>
+</form>
