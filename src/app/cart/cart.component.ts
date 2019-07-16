@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from '../service/cart.service';
 import {FlowerModel} from '../models/FlowerModel';
-import {MatDialog} from "@angular/material";
-import {OrderInfoModel} from "../models/OrderInfoModel";
 import {SubmitOrderComponent} from "../submit-order/submit-order.component";
 import {TopBarComponent} from "../top-bar/top-bar.component";
 
@@ -16,7 +14,6 @@ export class CartComponent implements OnInit {
 
     constructor(
         private cartService: CartService,
-        private matDialog: MatDialog,
     ) {
     }
 
@@ -31,7 +28,7 @@ export class CartComponent implements OnInit {
     }
 
     openDialogSubmitOrder() {
-        this.matDialog.open(SubmitOrderComponent);
+        SubmitOrderComponent.isPopupVisible = true;
     }
 
     changeQuantityFromButton(step, flower: FlowerModel) {

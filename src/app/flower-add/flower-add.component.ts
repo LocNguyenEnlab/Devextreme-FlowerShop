@@ -1,8 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Validators, FormBuilder} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
 import {FlowersService} from '../service/flowers.service';
 import {FlowerModel} from '../models/FlowerModel';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {HelperService} from "../service/helper.service";
 
 @Component({
@@ -11,49 +9,53 @@ import {HelperService} from "../service/helper.service";
     styleUrls: ['./flower-add.component.scss']
 })
 export class FlowerAddComponent implements OnInit {
-    addFlowerForm;
+    static isPopupVisible = false;
+    flowerId: number;
     flowers: FlowerModel[];
-    flower: FlowerModel;
-    isAdding: boolean;
+    flower: FlowerModel = this.flowersService.getFlower(this.flowerId);
+    isAdded: boolean;
 
     constructor(
         private flowersService: FlowersService,
-        private formBuilder: FormBuilder,
-        private dialogRef: MatDialogRef<FlowerAddComponent>,
-        @Inject(MAT_DIALOG_DATA) private data: any
     ) {
     }
 
     ngOnInit() {
-        if (this.data.flowerId) {
-            this.flower = this.flowersService.getFlower(this.data.flowerId);
-            document.getElementById('btn-edit').setAttribute('type', 'submit');
-            this.isAdding = false;
-            this.addFlowerForm = this.formBuilder.group( {
-                name: [this.flower.name, Validators.required],
-                price: [this.flower.price, Validators.required],
-                imageLink: [this.flower.imageLink, Validators.required],
-                remainingStock: [this.flower.remainingStock, Validators.required],
-            });
-        } else {
-            document.getElementById('btn-add').setAttribute('type', 'submit');
-            this.isAdding = true;
-            this.addFlowerForm = this.formBuilder.group( {
-                name: [null, Validators.required],
-                price: [null, Validators.required],
-                imageLink: [null, Validators.required],
-                remainingStock: [null, Validators.required],
-            });
-        }
     }
 
+    openAddPopup() {
+        FlowerAddComponent.isPopupVisible = true;
+        this.isAdded = true;
+        this.flower = {
+            id: null,
+            name: '',
+            price: null,
+            imageLink: '',
+            remainingStock: null,
+            quantity: null,
+            totalMoney: null,
+        };
+    }
+
+    openEditPopup(flowerId) {
+        FlowerAddComponent.isPopupVisible = true;
+        this.flowerId = flowerId;
+        this.flower = this.flowersService.getFlower(this.flowerId);
+        this.isAdded = false;
+    }
+
+    get staticIsPopupVisible() {
+        return FlowerAddComponent.isPopupVisible;
+    }
+
+
     onSubmit(flower: FlowerModel) {
-        if (this.isAdding === true) {
+        if (this.isAdded === true) {
             this.addFlower(flower);
         } else {
             this.editFlower(flower);
         }
-        this.dialogRef.close();
+        FlowerAddComponent.isPopupVisible = false;
     }
 
     addFlower(flower: FlowerModel) {
@@ -70,7 +72,6 @@ export class FlowerAddComponent implements OnInit {
         this.flowersService.addFlower(flower);
         this.flowersService.saveChange();
         HelperService.toastMakeText('Add a flower successfully');
-        this.addFlowerForm.reset();
     }
 
     editFlower(flower: FlowerModel) {
@@ -82,6 +83,10 @@ export class FlowerAddComponent implements OnInit {
         this.flowersService.editFlower(flower);
         this.flowersService.saveChange();
         HelperService.toastMakeText('Edit a flower successfully!');
+    }
+
+    closePopup() {
+        FlowerAddComponent.isPopupVisible = false;
     }
 
     formatNumber(id) {

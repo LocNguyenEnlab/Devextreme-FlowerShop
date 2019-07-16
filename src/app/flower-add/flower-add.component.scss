@@ -1,22 +1,22 @@
 .add-flower-form {
-    width: 350px;
     .vnd-currency {
         font-size: 20px;
     }
-    .validate-error {
-        font-size: 15px;
-        color: red;
-        font-style: italic;
-        margin-left: 10px;
+    .item-title {
+        margin-top: 25px;
     }
-    .btn-custom {
+    .group-btn {
+        margin-top: 25px;
         float: right;
+        dx-button {
+            margin: 20px;
+        }
     }
 }
-@media (max-width: 400px) {
-    .add-flower-form {
-        width: 230px;
-    }
-}
+//@media (max-width: 400px) {
+//    .add-flower-form {
+//        width: 230px;
+//    }
+//}
 
 

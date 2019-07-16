@@ -1,72 +1,46 @@
+@import "../../assets/styles";
 .top-bar {
     width: 100%;
     height: 100px;
-    background-color: #7faaf0;
+    background-color: $bg-color-top-bar;
     padding-top: 20px;
     position: fixed;
     margin: 0;
     z-index: 1;
-    .title {
-        float: left;
-        .btn-title {
-            display: inline-block;
-            white-space: nowrap;
-            color: #fff;
-            font-size: 30px;
-            margin: 10px 0 0 5px;
-        }
+    .btn-title {
+        display: inline-block;
+        white-space: nowrap;
+        color: #fff;
+        font-size: 30px;
+        margin: 10px 0 0 5px;
     }
 
-    .btn-group-custom {
-        float: right;
-        .nav-btn {
-            margin-right: 10px;
-            background-color: white;
-        }
-        .group-custom {
-            padding-right: 0;
-            .group-btn {
-                margin: 0;
-            }
-            @media (max-width: 767px) {
-                .group-btn {
-                    background-color: rgba(77, 96, 101, 0.82);
-                    border-radius: 5px;
-                }
-                .btn-logout {
-                    width: 89%;
-                }
-                .btn-cart {
-                    width: 89%;
-                }
+    .tool-bar {
+        background-color: $bg-color-top-bar;
+        //width: 200px;
+    }
+    .drawer-item {
+        //width: 100px;
+        .group-btn {
+            background-color: rgba(198, 240, 132, 0.82);
+            border-radius: 5px;
+            dx-button {
+                color: #fff;
+                background-color: $bg-color-top-bar;
+                font-size: $font-medium;
+                width: 95%;
+                margin: 3px 6px 3px 6px;
             }
         }
-        .btn-login {
-            float: right;
-            color: #7faaf0;
-            font-size: 20px;
-            margin: 10px 10px 0 10px;
-        }
-        .btn-logout {
-            float: right;
-            color: #7faaf0;
-            font-size: 20px;
-            margin: 10px 10px 10px 0;
-        }
-        .btn-cart {
-            float: right;
-            color: #7faaf0;
-            font-size: 20px;
-            margin: 10px 10px 0 0;
-            .custom {
-                background-color: #cd76e2;
-                margin-bottom: 6px;
-            }
-        }
+    }
+    @media (max-width: 375px) {
+
     }
 }
 a {
     text-decoration: none;
 }
+
+
 
 

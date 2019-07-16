@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {OrderInfoModel} from '../models/OrderInfoModel';
 import {CartService} from "../service/cart.service";
 import {OrderService} from "../service/order.service";
-import {MatDialogRef} from "@angular/material";
 import {HelperService} from "../service/helper.service";
 
 @Component({
@@ -11,12 +10,12 @@ import {HelperService} from "../service/helper.service";
     styleUrls: ['./submit-order.component.scss']
 })
 export class SubmitOrderComponent implements OnInit {
+    static isPopupVisible = false;
     orderInfo: OrderInfoModel;
 
     constructor(
         private cartService: CartService,
         private orderService: OrderService,
-        private matDialogRef: MatDialogRef<SubmitOrderComponent>,
     ) { }
 
     ngOnInit() {
@@ -30,8 +29,15 @@ export class SubmitOrderComponent implements OnInit {
 
     onSubmitOrder() {
         this.orderService.submitOrder(this.orderInfo);
-        this.matDialogRef.close();
         window.location.reload();
         HelperService.toastMakeText('Your order has been submitted!');
+    }
+
+    get staticIsPopupVisible() {
+        return SubmitOrderComponent.isPopupVisible;
+    }
+
+    closePopup() {
+        SubmitOrderComponent.isPopupVisible = false;
     }
 }

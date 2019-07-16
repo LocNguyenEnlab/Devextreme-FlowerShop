@@ -14,7 +14,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {MatDialogModule} from '@angular/material';
-import {DxButtonModule, DxFormModule, DxTextBoxModule} from 'devextreme-angular';
+import {
+    DxButtonModule,
+    DxDrawerModule,
+    DxFormModule,
+    DxListModule,
+    DxPopupModule,
+    DxTextBoxModule,
+    DxToolbarModule, DxValidatorModule
+} from 'devextreme-angular';
 
 @NgModule({
     declarations: [
@@ -46,6 +54,11 @@ import {DxButtonModule, DxFormModule, DxTextBoxModule} from 'devextreme-angular'
         DxButtonModule,
         DxTextBoxModule,
         DxFormModule,
+        DxToolbarModule,
+        DxDrawerModule,
+        DxListModule,
+        DxPopupModule,
+        DxValidatorModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

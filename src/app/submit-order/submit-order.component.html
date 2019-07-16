@@ -1,14 +1,35 @@
-<div class="container submit-dialog">
-    <div class="form-group">
-        <label>Name</label>
-        <input class="form-control" type="text" [(ngModel)]="orderInfo.name" required>
-        <label>Phone Number</label>
-        <input class="form-control" type="text" [(ngModel)]="orderInfo.phoneNumber" required>
-        <div class="total-money">
-            <span class="money-title">Total money</span>
-            <span class="money">{{orderInfo.totalMoney | currency: 'VND'}}</span>
+<dx-popup
+        [(visible)]="staticIsPopupVisible"
+        [closeOnOutsideClick]="false"
+        [showCloseButton]="false"
+        [showTitle]="false"
+        [height]="300"
+        width="60%"
+        [dragEnabled]="false">
+    <div *dxTemplate="let data of 'content'">
+        <div class="submit-dialog">
+            <div class="form-group">
+                <label class="item-title">Name</label>
+                <dx-text-box [(ngModel)]="orderInfo.name">
+                    <dx-validator>
+                        <dxi-validation-rule type="required" message="* Name is required"></dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+                <label class="item-title">Phone Number</label>
+                    <dx-text-box [(ngModel)]="orderInfo.name">
+                        <dx-validator>
+                            <dxi-validation-rule type="required" message="* Phone number is required"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-box>
+                <div class="total-money">
+                    <span class="money-title">Total money</span>
+                    <span class="money">{{orderInfo.totalMoney | currency: 'VND'}}</span>
+                </div>
+                <div class="group-btn">
+                    <dx-button type="danger" (onClick)="closePopup()">Cancel</dx-button>
+                    <dx-button type="success" (onClick)="onSubmitOrder()">Submit</dx-button>
+                </div>
+            </div>
         </div>
-        <input type="button" (click)="onSubmitOrder()" class="btn btn-default btn-custom" value="Submit"
-            [disabled]="!(orderInfo.name.replace(' ', '').length != 0) || !(orderInfo.phoneNumber.length != 0)">
     </div>
-</div>
+</dx-popup>

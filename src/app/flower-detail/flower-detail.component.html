@@ -1,3 +1,4 @@
+<app-flower-add></app-flower-add>
 <div class="container box-detail">
     <div class="row" *ngIf = 'flower'>
         <div class="col-sm-6">
@@ -13,20 +14,20 @@
                 <div>
                     <span class="total-money-title">Total money </span>
                     <dx-text-box [ngModel]="flower.totalMoney | currency: 'VND'" (ngModelChange)="flower.totalMoney=$event"
-                                 id="total-money" class="total-money" readOnly></dx-text-box>
+                                 id="total-money" class="total-money" readOnly="true"></dx-text-box>
                 </div>
                 <div>
                     <span class="quantity">Quantity  </span>
                     <div class="input-group number-spinner quantity-input">
                         <span class="input-group-btn">
-                            <dx-button id="quantity-down" (click)="changeQuantityFromButton(-1)" class="btn btn-default" data-dir="dwn">
+                            <dx-button (click)="changeQuantityFromButton(-1)" class="btn btn-default">
                                 <span class="glyphicon glyphicon-minus"></span>
                             </dx-button>
                         </span>
-                        <dx-text-box [(ngModel)]="flower.quantity" id="quantity" type="number" (input)="changeQuantityFromInput()"
+                        <dx-text-box [(ngModel)]="flower.quantity" (input)="changeQuantityFromInput()"
                                      (change)="onChangeQuantity()" class="form-control text-center"></dx-text-box>
                         <span class="input-group-btn">
-                            <dx-button id="quantity-up" (click)="changeQuantityFromButton(1)" class="btn btn-default" data-dir="up">
+                            <dx-button (click)="changeQuantityFromButton(1)" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </dx-button>
                         </span>
@@ -39,13 +40,13 @@
         <div class="col-sm-6"> </div>
         <div class="col-sm-6">
             <div class="row btn-box">
-                <dx-button (click)="addToCart(flower)" class="btn btn-primary btn-custom" [disabled]="flower.remainingStock < 0">
+                <dx-button (click)="addToCart(flower)" type="success" class="btn-custom" [disabled]="flower.remainingStock < 0">
                     Add To Cart
                 </dx-button>
-                <dx-button [visible]="session != null" (click)="openDialogEditFlower(flower.id)" class="btn btn-default btn-custom">
+                <dx-button [visible]="staticIsSession" type="default" (click)="openDialogEditFlower(flower.id)" class="btn-custom">
                     Edit
                 </dx-button>
-                <dx-button [visible]="session != null" (click) = "removeFlower(flower.id)" class="btn btn-danger btn-custom">
+                <dx-button [visible]="staticIsSession" type="danger" (click) = "removeFlower(flower.id)" class="btn-custom">
                     Remove
                 </dx-button>
             </div>

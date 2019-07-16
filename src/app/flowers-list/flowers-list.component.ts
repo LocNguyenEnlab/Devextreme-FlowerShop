@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FlowersService} from '../service/flowers.service';
 import {CartService} from '../service/cart.service';
 import {FlowerAddComponent} from '../flower-add/flower-add.component';
-import {MatDialog} from '@angular/material';
 
 @Component({
     selector: 'app-flowers-list',
@@ -10,28 +9,24 @@ import {MatDialog} from '@angular/material';
     styleUrls: ['./flowers-list.component.scss']
 })
 export class FlowersListComponent implements OnInit {
+    static isSession: boolean = !!sessionStorage.getItem('session');
     flowers = this.flowersService.getFlowers();
-    session = sessionStorage.getItem('session');
+    // @ts-ignore
+    @ViewChild(FlowerAddComponent) flowerAddComponent: FlowerAddComponent;
 
     constructor(
         private cartService: CartService,
         private flowersService: FlowersService,
-        private matDialog: MatDialog,
     ) {}
 
     ngOnInit() {
-        this.checkSession();
     }
 
     openDialogAddFlower() {
-        this.matDialog.open(FlowerAddComponent, {
-            data: {['flowerId']: null},
-        });
+        this.flowerAddComponent.openAddPopup();
     }
 
-    checkSession() {
-        if (sessionStorage.getItem('session')) {
-            document.getElementById('btn-add-flower').setAttribute('visible', 'true');
-        }
+    get staticIsSession() {
+        return FlowersListComponent.isSession;
     }
 }

@@ -19,18 +19,6 @@ export class AccountService {
         }
     }
 
-    addAccount(account: AccountModel) {
-        this.accounts.push(account);
-    }
-
-    getAccounts(): AccountModel[] {
-        return this.accounts;
-    }
-
-    getAccount(userName) {
-        return this.accounts.find(s => s.userName === userName);
-    }
-
     isValid(account: AccountModel) {
         return this.accounts.find(s => s.userName === account.userName && s.passWord === account.passWord);
     }

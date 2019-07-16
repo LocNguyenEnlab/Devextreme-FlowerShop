@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FlowersService} from '../service/flowers.service';
 import {FlowerModel} from '../models/FlowerModel';
-import {MatDialog} from '@angular/material';
 import {FlowerAddComponent} from '../flower-add/flower-add.component';
 import {CartService} from '../service/cart.service';
-import {HelperService} from "../service/helper.service";
-import {TopBarComponent} from "../top-bar/top-bar.component";
+import {HelperService} from '../service/helper.service';
+import {TopBarComponent} from '../top-bar/top-bar.component';
+import {FlowersListComponent} from '../flowers-list/flowers-list.component';
 
 @Component({
     selector: 'app-flower-detail',
@@ -14,14 +14,15 @@ import {TopBarComponent} from "../top-bar/top-bar.component";
     styleUrls: ['./flower-detail.component.scss']
 })
 export class FlowerDetailComponent implements OnInit {
+    static isSession = FlowersListComponent.isSession;
     flower: FlowerModel;
-    session = sessionStorage.getItem('session');
+    // @ts-ignore
+    @ViewChild(FlowerAddComponent) flowerAddComponent: FlowerAddComponent;
 
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private flowersService: FlowersService,
-        private matDialog: MatDialog,
         private cartService: CartService,
     ) {
     }
@@ -44,11 +45,8 @@ export class FlowerDetailComponent implements OnInit {
     }
 
     openDialogEditFlower(flowerId) {
-        this.matDialog.open(FlowerAddComponent, {
-            data: {
-                ['flowerId']: flowerId,
-            }
-        });
+        // FlowerAddComponent.openEditPopup(flowerId);
+        this.flowerAddComponent.openEditPopup(flowerId);
     }
 
     removeFlower(flowerId) {
@@ -90,5 +88,9 @@ export class FlowerDetailComponent implements OnInit {
         this.cartService.saveChange();
         HelperService.toastMakeText('Your flower has been added to cart!');
         TopBarComponent.totalQuantity = this.cartService.getTotalQuantity();
+    }
+
+    get staticIsSession() {
+        return FlowerDetailComponent.isSession;
     }
 }

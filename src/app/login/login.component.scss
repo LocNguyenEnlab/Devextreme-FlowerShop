@@ -1,16 +1,18 @@
 .dialog-login {
-    .action {
+    width: 500px;
+    height: 350px;
+    .group-btn {
+        margin-top: 25px;
         float: right;
-        bottom: 5%;
-        .btn-custom {
-            margin: 15px;
-        }
     }
     .validate-error {
         font-size: 15px;
         color: red;
         font-style: italic;
         margin-left: 10px;
+    }
+    dx-button {
+        margin: 10px;
     }
 }
 
