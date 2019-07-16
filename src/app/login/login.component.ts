@@ -3,10 +3,10 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {AccountModel} from '../models/AccountModel';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AccountService} from '../service/account.service';
-import {HelperService} from '../service/helper.service';
 import {TopBarComponent} from '../top-bar/top-bar.component';
 import {FlowersListComponent} from '../flowers-list/flowers-list.component';
 import {FlowerDetailComponent} from '../flower-detail/flower-detail.component';
+import notify from "devextreme/ui/notify";
 
 @Component({
     selector: 'app-login',
@@ -51,10 +51,10 @@ export class LoginComponent implements OnInit {
         FlowersListComponent.isSession = true;
         FlowerDetailComponent.isSession = true;
         TopBarComponent.btnLoginTitle = 'Hi ' + account.userName;
-        HelperService.toastMakeText('Log in successfully!');
+        notify('Log in successfully!', 'success');
     }
 
     loginFail() {
-        HelperService.toastMakeText('Account invalid!');
+        notify('Account invalid!', 'error');
     }
 }

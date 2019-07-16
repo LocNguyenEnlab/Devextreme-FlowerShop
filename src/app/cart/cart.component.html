@@ -1,5 +1,5 @@
 <app-submit-order></app-submit-order>
-<div class="container cart-box">
+<div class="container cart-box" style="padding: 0">
     <h3 class="text-center order-title">Ordered list</h3>
     <div class="row cart-item" *ngFor="let flower of flowers; index as flowerIndex">
         <div class="col-sm-3">
@@ -17,17 +17,17 @@
                 <div class="col-sm-6 col-xs-6">
                     <div class="input-group number-spinner quantity-input">
                         <span class="input-group-btn">
-                            <dx-button id="quantity-down" (click)="changeQuantityFromButton(-1, flower)" type="normal" class="btn-change-quantity"
-                                    data-dir="dwn">
+                            <dx-button (click)="changeQuantityFromButton(-1, flower)">
                                 <span class="glyphicon glyphicon-minus icon-change-quantity"></span>
                             </dx-button>
                         </span>
-                            <dx-text-box [(ngModel)]="flower.quantity" (input)="changeQuantityFromInput(flower)"
-                                       (change)="onChangeQuantity(flower)" class="form-control quantity">
-                            </dx-text-box>
+                            <dx-number-box id="quantity-number-input" [(ngModel)]="flower.quantity" (input)="changeQuantityFromInput(flower)"
+                                       (change)="onChangeQuantity(flower)" class="form-control">
+                            </dx-number-box>
                         <span class="input-group-btn">
-                            <dx-button id="quantity-up" (click)="changeQuantityFromButton(1, flower)" class="btn btn-default btn-change-quantity"
-                                    data-dir="up"><span class="glyphicon glyphicon-plus icon-change-quantity"></span></dx-button>
+                            <dx-button (click)="changeQuantityFromButton(1, flower)">
+                                <span class="glyphicon glyphicon-plus icon-change-quantity"></span>
+                        </dx-button>
                         </span>
                     </div>
                     <p class="money">{{flower.totalMoney | currency: 'VND'}}</p>
@@ -36,7 +36,9 @@
         </div>
     </div>
     <div class="btn-submit-order">
-        <input type="button" (click)="openDialogSubmitOrder()" class="btn btn-primary" value="Submit Order"
-               [disabled]="!(flowers.length != 0)">
+        <dx-button type="button" (click)="openDialogSubmitOrder()" class="btn btn-primary" type="success"
+                   [disabled]="!(flowers.length != 0)">
+            Submit Order
+        </dx-button>
     </div>
 </div>

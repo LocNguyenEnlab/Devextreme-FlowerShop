@@ -12,11 +12,12 @@
         white-space: nowrap;
         color: #fff;
         font-size: 30px;
-        margin: 10px 0 0 5px;
+        margin: 10px 0 0 0;
     }
 
     .tool-bar {
         background-color: $bg-color-top-bar;
+        padding-right: 10px;
         //width: 200px;
     }
     .drawer-item {
@@ -32,9 +33,6 @@
                 margin: 3px 6px 3px 6px;
             }
         }
-    }
-    @media (max-width: 375px) {
-
     }
 }
 a {

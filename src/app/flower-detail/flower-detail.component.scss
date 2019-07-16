@@ -49,9 +49,18 @@
             float: left;
             font-size: $font-medium;
         }
-        .quantity-input {
+        .quantity-input-group {
             padding-left: 20px;
             width: 160px;
+            .quantity-input {
+                text-align: center;
+                input[type=number] {
+                    text-align:center;
+                }
+            }
+            #quantity-number-input /deep/ .dx-texteditor-input {
+                text-align: center;
+            }
         }
     }
     .btn-box {
@@ -62,15 +71,13 @@
     }
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+input {
+    text-align: right;
 }
 
-input[type=number] {
-     -moz-appearance:textfield; /* Firefox */
- }
+
+
+
+
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrderInfoModel} from '../models/OrderInfoModel';
 import {CartService} from "../service/cart.service";
 import {OrderService} from "../service/order.service";
-import {HelperService} from "../service/helper.service";
+import notify from "devextreme/ui/notify";
 
 @Component({
     selector: 'app-submit-order',
@@ -30,7 +30,16 @@ export class SubmitOrderComponent implements OnInit {
     onSubmitOrder() {
         this.orderService.submitOrder(this.orderInfo);
         window.location.reload();
-        HelperService.toastMakeText('Your order has been submitted!');
+        notify('Your order has been submitted!', 'success');
+    }
+
+    isSubmit() {
+        if (this.orderInfo.name.length === 0 ||
+            this.orderInfo.phoneNumber.length === 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     get staticIsPopupVisible() {

@@ -18,16 +18,17 @@
                 </div>
                 <div>
                     <span class="quantity">Quantity  </span>
-                    <div class="input-group number-spinner quantity-input">
+                    <div class="input-group number-spinner quantity-input-group">
                         <span class="input-group-btn">
-                            <dx-button (click)="changeQuantityFromButton(-1)" class="btn btn-default">
+                            <dx-button (click)="changeQuantityFromButton(-1)">
                                 <span class="glyphicon glyphicon-minus"></span>
                             </dx-button>
                         </span>
-                        <dx-text-box [(ngModel)]="flower.quantity" (input)="changeQuantityFromInput()"
-                                     (change)="onChangeQuantity()" class="form-control text-center"></dx-text-box>
+                        <dx-number-box id="quantity-number-input" [(ngModel)]="flower.quantity" (input)="changeQuantityFromInput()"
+                                     (change)="onChangeQuantity()" class="form-control quantity-input">
+                        </dx-number-box>
                         <span class="input-group-btn">
-                            <dx-button (click)="changeQuantityFromButton(1)" class="btn btn-default">
+                            <dx-button (click)="changeQuantityFromButton(1)">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </dx-button>
                         </span>
@@ -40,7 +41,7 @@
         <div class="col-sm-6"> </div>
         <div class="col-sm-6">
             <div class="row btn-box">
-                <dx-button (click)="addToCart(flower)" type="success" class="btn-custom" [disabled]="flower.remainingStock < 0">
+                <dx-button (click)="addToCart(flower)" type="success" class="btn-custom" [disabled]="flower.remainingStock <= 0">
                     Add To Cart
                 </dx-button>
                 <dx-button [visible]="staticIsSession" type="default" (click)="openDialogEditFlower(flower.id)" class="btn-custom">

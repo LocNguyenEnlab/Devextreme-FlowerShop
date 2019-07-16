@@ -18,7 +18,7 @@ import {
     DxButtonModule,
     DxDrawerModule,
     DxFormModule,
-    DxListModule,
+    DxListModule, DxNumberBoxModule,
     DxPopupModule,
     DxTextBoxModule,
     DxToolbarModule, DxValidatorModule
@@ -59,6 +59,7 @@ import {
         DxListModule,
         DxPopupModule,
         DxValidatorModule,
+        DxNumberBoxModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

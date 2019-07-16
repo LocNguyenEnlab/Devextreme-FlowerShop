@@ -1,12 +1,9 @@
 @import "../../assets/styles";
-input[type=number]::-webkit-inner-spin-button {
-    opacity: 1;
-}
 .cart-box {
     margin-top: 110px;
     .cart-item {
         margin: 10px;
-        width: 95%;
+        width: 97%;
         height: auto;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 5px;
@@ -47,10 +44,8 @@ input[type=number]::-webkit-inner-spin-button {
                     left: 7px;
                 }
             }
-            dx-text-box {
+            #quantity-number-input /deep/ .dx-texteditor-input {
                 text-align: center;
-                margin: 0;
-                padding: 0;
             }
         }
         .money {
@@ -70,13 +65,3 @@ input[type=number]::-webkit-inner-spin-button {
     }
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
-}

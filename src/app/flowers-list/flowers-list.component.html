@@ -1,7 +1,7 @@
 <app-flower-add></app-flower-add>
 
-<div class="container" style="margin-top: 100px">
-    <dx-button id="btn-add-flower" (click)="openDialogAddFlower()" [visible]="staticIsSession" class="btn btn-primary btn-add-flower">
+<div class="container" style="margin: 100px 0 0 0; padding: 0;">
+    <dx-button (click)="openDialogAddFlower()" [visible]="staticIsSession" type="success" class="btn-add-flower">
         Add a flower
     </dx-button>
     <div *ngFor = "let flower of flowers">

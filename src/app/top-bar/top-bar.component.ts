@@ -4,6 +4,7 @@ import {CartService} from "../service/cart.service";
 import {DxDrawerComponent} from 'devextreme-angular';
 import {FlowersListComponent} from '../flowers-list/flowers-list.component';
 import {FlowerDetailComponent} from '../flower-detail/flower-detail.component';
+import {AccountModel} from "../models/AccountModel";
 
 @Component({
     selector: 'app-top-bar',
@@ -16,6 +17,7 @@ export class TopBarComponent implements OnInit {
     @ViewChild(DxDrawerComponent, { static: false }) drawer: DxDrawerComponent;
     selectedPosition = 'top';
     selectedRevealMode = 'expand';
+    accounts: AccountModel[] = [];
 
 
     toolbarContent = [{
@@ -37,6 +39,16 @@ export class TopBarComponent implements OnInit {
 
     ngOnInit() {
         this.checkSession();
+        this.addAccount();
+    }
+
+    addAccount() {
+        const account: AccountModel = {
+            userName: 'LocNguyen',
+            passWord: 'vStation123'
+        };
+        this.accounts.push(account);
+        localStorage.setItem('accounts', JSON.stringify(this.accounts));
     }
 
     get staticTotalQuantity() {

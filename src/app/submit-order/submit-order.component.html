@@ -16,7 +16,7 @@
                     </dx-validator>
                 </dx-text-box>
                 <label class="item-title">Phone Number</label>
-                    <dx-text-box [(ngModel)]="orderInfo.name">
+                    <dx-text-box [(ngModel)]="orderInfo.phoneNumber">
                         <dx-validator>
                             <dxi-validation-rule type="required" message="* Phone number is required"></dxi-validation-rule>
                         </dx-validator>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="group-btn">
                     <dx-button type="danger" (onClick)="closePopup()">Cancel</dx-button>
-                    <dx-button type="success" (onClick)="onSubmitOrder()">Submit</dx-button>
+                    <dx-button type="success" (onClick)="onSubmitOrder()" [disabled]="!isSubmit()">Submit</dx-button>
                 </div>
             </div>
         </div>

@@ -4,9 +4,9 @@ import {FlowersService} from '../service/flowers.service';
 import {FlowerModel} from '../models/FlowerModel';
 import {FlowerAddComponent} from '../flower-add/flower-add.component';
 import {CartService} from '../service/cart.service';
-import {HelperService} from '../service/helper.service';
 import {TopBarComponent} from '../top-bar/top-bar.component';
 import {FlowersListComponent} from '../flowers-list/flowers-list.component';
+import notify from "devextreme/ui/notify";
 
 @Component({
     selector: 'app-flower-detail',
@@ -53,7 +53,7 @@ export class FlowerDetailComponent implements OnInit {
         this.flowersService.removeFlower(flowerId);
         this.flowersService.saveChange();
         this.router.navigate(['']);
-        HelperService.toastMakeText('Your flower has been removed!');
+        notify('Your flower has been removed!', 'success');
     }
 
     changeQuantityFromButton(step) {
@@ -86,7 +86,7 @@ export class FlowerDetailComponent implements OnInit {
     addToCart(flower: FlowerModel) {
         this.cartService.addToCart(flower);
         this.cartService.saveChange();
-        HelperService.toastMakeText('Your flower has been added to cart!');
+        notify('Your flower has been added to cart!', 'success');
         TopBarComponent.totalQuantity = this.cartService.getTotalQuantity();
     }
 

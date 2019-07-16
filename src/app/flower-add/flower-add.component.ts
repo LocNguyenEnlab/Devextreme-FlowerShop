@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FlowersService} from '../service/flowers.service';
 import {FlowerModel} from '../models/FlowerModel';
-import {HelperService} from "../service/helper.service";
+import notify from "devextreme/ui/notify";
 
 @Component({
     selector: 'app-flower-add',
@@ -23,15 +23,24 @@ export class FlowerAddComponent implements OnInit {
     ngOnInit() {
     }
 
+    isValid() {
+        if (this.flower.name.length === 0 || this.flower.price === 0 ||
+            this.flower.imageLink.length === 0 || this.flower.remainingStock === 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     openAddPopup() {
         FlowerAddComponent.isPopupVisible = true;
         this.isAdded = true;
         this.flower = {
             id: null,
             name: '',
-            price: null,
+            price: 0,
             imageLink: '',
-            remainingStock: null,
+            remainingStock: 0,
             quantity: null,
             totalMoney: null,
         };
@@ -71,7 +80,7 @@ export class FlowerAddComponent implements OnInit {
         flower.totalMoney = 0;
         this.flowersService.addFlower(flower);
         this.flowersService.saveChange();
-        HelperService.toastMakeText('Add a flower successfully');
+        notify('Add a flower successfully', 'success');
     }
 
     editFlower(flower: FlowerModel) {
@@ -82,7 +91,7 @@ export class FlowerAddComponent implements OnInit {
         flower.remainingStock = +(flower.remainingStock.toString().replace(',',''));
         this.flowersService.editFlower(flower);
         this.flowersService.saveChange();
-        HelperService.toastMakeText('Edit a flower successfully!');
+        notify('Edit a flower successfully!', 'success');
     }
 
     closePopup() {
